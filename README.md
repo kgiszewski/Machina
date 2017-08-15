@@ -15,7 +15,7 @@ To use you will need to do the following:
 3) Start the runner by executing `~/bin/Chauffeur.Runner.exe`
 4) Type `help` and press `ENTER`. This will show you the commands you can run.
 
-**You should read the rest of this before proceeding.**
+**You should read the rest of this before proceeding!**
 
 To run a command, type the command name and press `ENTER`. For instance to run the `migrate content picker` command, type `mcp` and press `ENTER`.
 
@@ -34,3 +34,16 @@ At this point your site will be broken if you visit it. It's because the underly
 These cache values are used in the `Umbraco.ContentPicker2` property value converter and will throw an exception.
 
 To fix publish all of your nodes. You can do so by right-clicking the root level items (one at a time) and selecting 'Publish'. This isn't the same as 'Republish Entire Site' which is available at the top.
+
+**BACKUP YOUR DB IN CASE IT GOES WRONG. PRACTICE LOCALLY BEFORE ATTEMPTING ON PROD!**
+
+## FAQ
+
+**Where do I get the `Machina.dll`?**
+Right now you'll clone this repo and build it. I hope to have some prebuilt releases soon and even better, a Nuget package.
+
+**What about xyz property type?**
+There are a few other property types not covered in the migration scripts. Those are `Folder Browser` and `Related Links`. Send me a PR.
+
+**What about Archetype and Nested Content?**
+Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. Pull request maybe? 
