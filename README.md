@@ -52,3 +52,6 @@ Archetype and Nested Content are a bit tougher since they are saving data differ
 
 **Can I just test a small set first?**
 You can pass a doctype to the migrations in this form `mcp 0 homepage` to limit the content to the `homepage` doctype. Use `mcp 1 homepage` to persist the changes to just that doctype.
+
+## Thanks
+Thanks to [Aaron Powel](https://github.com/aaronpowell) (Chauffeur author) and Tom Fulton for letting me share :)
