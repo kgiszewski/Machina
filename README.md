@@ -64,7 +64,8 @@ public class MachinaBootstrapper
         var dummy = typeof(Machina.Migrations.MigrationHelper);
         noop(dummy);
     }
-}```
+}
+```
 
 Or you can copy it directly from the Nuget package folder and drop it into the `/bin`.
 
