@@ -11,7 +11,7 @@ Migrate from Property Editors from the old non-UDI to the new UDI format.
 To use you will need to do the following:
 
 1) Install [Chauffeur.Runner](https://www.nuget.org/packages/Chauffeur.Runner/0.9.0) (recommended to use v0.9.0) to your web project. This will allow you to execute these scripts from the command line.
-2) Make sure the `Machina.dll` is in you web `/bin` folder. (Will have a Nuget install at some point).
+2) Make sure the `Machina.dll` is in you web `/bin` folder. Get it [on Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 3) Start the runner by executing `~/bin/Chauffeur.Runner.exe`
 4) Type `help` and press `ENTER`. This will show you the commands you can run.
 
@@ -42,7 +42,7 @@ To fix publish all of your nodes. You can do so by right-clicking the root level
 ## FAQ
 
 **Where do I get the `Machina.dll`?**
-Right now you'll clone this repo and build it. I hope to have some prebuilt releases soon and even better, a Nuget package.
+Right now can clone this repo and build it or pick version on [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 
 **What about xyz property type?**
 There are a few other property types not covered in the migration scripts. Those are `Folder Browser` and `Related Links`. Send me a PR.
@@ -52,6 +52,23 @@ Archetype and Nested Content are a bit tougher since they are saving data differ
 
 **Can I just test a small set first?**
 You can pass a doctype to the migrations in this form `mcp 0 homepage` to limit the content to the `homepage` doctype. Use `mcp 1 homepage` to persist the changes to just that doctype.
+
+**I don't see the commands I'm expecting.**
+Confirm the `Machina.dll` is in your `/bin`. Visual Studio doesn't like to copy DLL's (even if they are referenced) to the /bin unless there is a usage somewhere in code. You can force it by using a dummy class like this:
+```
+public class MachinaBootstrapper
+{
+    private static void Dummy()
+    {
+        Action<Type> noop = _ => { };
+        var dummy = typeof(Machina.Migrations.MigrationHelper);
+        noop(dummy);
+    }
+}```
+
+Or you can copy it directly from the Nuget package folder and drop it into the `/bin`.
+
+This is an annoying 'feature' that can be read about [here](https://stackoverflow.com/questions/15816769/dependent-dll-is-not-getting-copied-to-the-build-output-folder-in-visual-studio).
 
 ## Thanks
 Thanks to [Aaron Powell](https://github.com/aaronpowell) (Chauffeur author) and Tom Fulton for letting me share :)
