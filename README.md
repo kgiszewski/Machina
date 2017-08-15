@@ -17,6 +17,8 @@ To use you will need to do the following:
 
 **You should read the rest of this before proceeding!**
 
+![help](assets/machina-chauffeur.png)
+
 To run a command, type the command name and press `ENTER`. For instance to run the `migrate content picker` command, type `mcp` and press `ENTER`.
 
 This will provide you preview output against your database. At this time you see if the proposed changes seem legit.
