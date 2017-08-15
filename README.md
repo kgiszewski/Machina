@@ -11,7 +11,7 @@ Migrate from Property Editors from the old non-UDI to the new UDI format.
 To use you will need to do the following:
 
 1) Install [Chauffeur.Runner](https://www.nuget.org/packages/Chauffeur.Runner/0.9.0) (recommended to use v0.9.0) to your web project. This will allow you to execute these scripts from the command line.
-2) Make sure the `Machina.dll` is in you web `/bin` folder. Get it [on Nuget](https://www.nuget.org/packages/Umbraco.Machina).
+2) Make sure the `Machina.dll` is in you web `/bin` folder. Get it on [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 3) Start the runner by executing `~/bin/Chauffeur.Runner.exe`
 4) Type `help` and press `ENTER`. This will show you the commands you can run.
 
