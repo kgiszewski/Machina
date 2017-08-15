@@ -49,3 +49,6 @@ There are a few other property types not covered in the migration scripts. Those
 
 **What about Archetype and Nested Content?**
 Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. So don't change any items bundled into Nested Content\Archetype just yet. It'll just be pain for you.
+
+**Can I just test a small set first?**
+You can pass a doctype to the migrations in this form `mcp 0 homepage` to limit the content to the `homepage` doctype. Use `mcp 1 homepage` to persist the changes to just that doctype.
