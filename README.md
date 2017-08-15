@@ -15,9 +15,9 @@ To use you will need to do the following:
 3) Start the runner by executing `~/bin/Chauffeur.Runner.exe`
 4) Type `help` and press `ENTER`. This will show you the commands you can run.
 
-**You should read the rest of this before proceeding!**
+**You should read the rest of this before proceeding (including FAQ's)!**
 
-![help](assets/machina-chauffeur.png)
+![help](assets/machina.png)
 
 To run a command, type the command name and press `ENTER`. For instance to run the `migrate content picker` command, type `mcp` and press `ENTER`.
 
@@ -48,4 +48,10 @@ Right now you'll clone this repo and build it. I hope to have some prebuilt rele
 There are a few other property types not covered in the migration scripts. Those are `Folder Browser` and `Related Links`. Send me a PR.
 
 **What about Archetype and Nested Content?**
-Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. Pull request maybe? 
+Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. So don't change any items bundled into Nested Content\Archetype just yet. It'll just be pain for you.
+
+**Can I just test a small set first?**
+You can pass a doctype to the migrations in this form `mcp 0 homepage` to limit the content to the `homepage` doctype. Use `mcp 1 homepage` to persist the changes to just that doctype.
+
+## Thanks
+Thanks to [Aaron Powell](https://github.com/aaronpowell) (Chauffeur author) and Tom Fulton for letting me share :)
