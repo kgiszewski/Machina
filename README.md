@@ -42,7 +42,7 @@ To fix publish all of your nodes. You can do so by right-clicking the root level
 ## FAQ
 
 **Where do I get the `Machina.dll`?**
-Right now can clone this repo and build it or pick version on [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
+Right now can clone this repo and build it or off [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 
 **What about xyz property type?**
 There are a few other property types not covered in the migration scripts. Those are `Folder Browser` and `Related Links`. Send me a PR.
