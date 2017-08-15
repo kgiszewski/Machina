@@ -1,6 +1,6 @@
 # Machina
 
-An Umbraco Chauffeur extension to run one-time (or as needed) utilities on your Umbraco sites.
+An Umbraco Chauffeur extension to run one-time utilities (or as needed) on your Umbraco sites.
 
 ## Property Editor Migrations
 
