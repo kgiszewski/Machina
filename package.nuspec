@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Machina</id>
+        <version>0.1.0</version>
+        <title>Umbraco Machina</title>
+        <authors>kgiszewski, tomfulton</authors>
+        <owners>kgiszewski, tomfulton</owners>
+        <projectUrl>https://github.com/kgiszewski/Machina</projectUrl>
+        <description><![CDATA[Machina for Umbraco]]></description>
+        <tags>umbraco, chauffeur</tags>
+        <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+        <dependencies>
+        </dependencies>
+    </metadata>
+</package>

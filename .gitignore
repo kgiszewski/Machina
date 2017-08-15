@@ -10,6 +10,8 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+tmp/
+pkg/
 
 [Dd]ebug/
 [Bb]uild/
