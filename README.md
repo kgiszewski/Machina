@@ -25,7 +25,7 @@ This will provide you preview output against your database. At this time you see
 
 You'll likely get no output because you probably haven't changed your `ContentPicker` to `ContentPicker2`.
 
-Log into Umbraco, change any datatype using `Umbraco.ContentPicker` to `Umbraco.ContentPicker2` and save.
+Log into Umbraco, change any datatype using `Umbraco.ContentPicker` to `Umbraco.ContentPicker2` and save. Any prevalues won't move over so you'll wanna update those too.
 
 Now re-run the preview (i.e. `mcp <ENTER>`).
 
