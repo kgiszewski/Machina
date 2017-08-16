@@ -46,6 +46,11 @@ namespace Machina.Migrations
         {
             if (args.Length > 1)
             {
+                if (args[1] == "0")
+                {
+                    return allContent;
+                }
+
                 Console.WriteLine($"Filtering for doctype: {args[1]}");
 
                 return allContent.Where(x => x.ContentType.Alias.ToLower() == args[1].ToLower()).ToList();
