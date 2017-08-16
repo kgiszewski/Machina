@@ -45,7 +45,7 @@ To fix publish all of your nodes. You can do so by right-clicking the root level
 Right now can clone this repo and build it or off [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 
 **What about xyz property type?**
-There are a few other property types not covered in the migration scripts. Those are `Folder Browser` and `Related Links`. Send me a PR.
+There are a few other property types not covered in the migration scripts. Those are `Folder Browser`, `Member Picker` and `Related Links`. Send me a PR.
 
 **What about Archetype and Nested Content?**
 Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. So don't change any items bundled into Nested Content\Archetype just yet. It'll just be pain for you.
