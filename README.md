@@ -82,7 +82,7 @@ There are a few other property types not covered in the migration scripts. Those
 Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. So don't change any items bundled into Nested Content\Archetype just yet. It'll just be pain for you.
 
 **Can I just test a small set first?**
-You can pass a doctype to the migrations in this form `mcp 0 homepage` to limit the content to the `homepage` doctype. Use `mcp 1 homepage` to persist the changes to just that doctype.
+You can pass a doctype to the migrations in this form `machina-mcp -f:homepage` to limit the content to the `homepage` doctype. Use `machina-mcp -p:1 -f:homepage` to persist the changes to just that doctype.
 
 **I don't see the commands I'm expecting.**
 Confirm the `Machina.dll` is in your `/bin`. Visual Studio doesn't like to copy DLL's (even if they are referenced) to the /bin unless there is a usage somewhere in code. You can force it by using a dummy class like this:
