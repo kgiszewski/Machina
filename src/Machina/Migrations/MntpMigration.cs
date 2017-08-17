@@ -28,7 +28,9 @@ namespace Machina.Migrations
 
         public override async Task<DeliverableResponse> Run(string command, string[] args)
         {
-            var shouldPersist = MigrationHelper.ShouldPersist(args);
+            var cliInput = MigrationHelper.ParseCliArgs(args);
+
+            var shouldPersist = cliInput.ShouldPersist;
 
             Console.WriteLine("Migrating MNTP properties to UDI...");
 
@@ -41,12 +43,19 @@ namespace Machina.Migrations
                 Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
             }
 
-            var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(args);
+            var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(cliInput);
 
             MigrationHelper.SetBufferSize(allContent.Count);
 
+            var contentCounter = 1;
+            var contentTotal = allContent.Count;
+
             foreach (var content in allContent)
             {
+                contentCounter++;
+
+                Console.WriteLine($"{contentCounter}/{contentTotal}");
+
                 foreach (var property in content.Properties.Where(x => x.PropertyType.PropertyEditorAlias == _newContentTypeAlias))
                 {
                     if (property.Value != null)

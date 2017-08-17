@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chauffeur;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
@@ -42,26 +43,73 @@ namespace Machina.Migrations
             Console.SetBufferSize(200, proposedSize);
         }
 
-        public static List<IContent> FilterBy(this List<IContent> allContent, string[] args)
+        public static List<IContent> FilterBy(this List<IContent> allContent, MigrationCliInput cliInput)
         {
-            if (args.Length > 1)
+            if (!string.IsNullOrEmpty(cliInput.FilterBy))
             {
-                if (args[1] == "0")
-                {
-                    return allContent;
-                }
+                Console.WriteLine($"Filtering for doctype: {cliInput.FilterBy}");
 
-                Console.WriteLine($"Filtering for doctype: {args[1]}");
-
-                return allContent.Where(x => x.ContentType.Alias.ToLower() == args[1].ToLower()).ToList();
+                return allContent.Where(x => x.ContentType.Alias.ToLower() == cliInput.FilterBy.ToLower()).ToList();
             }
 
             return allContent;
         }
 
-        public static bool ShouldPersist(string[] args)
+        public static MigrationCliInput ParseCliArgs(string[] args)
         {
-            return args.Any() && args[0] == "1";
+            var argsAsDictionary = _argsAsDictionary(args);
+
+            var input = new MigrationCliInput
+            {
+                ShouldPersist = argsAsDictionary.ContainsKey("-p") && argsAsDictionary["-p"] == "1"
+            };
+
+            if (argsAsDictionary.ContainsKey("-f"))
+            {
+                input.FilterBy = argsAsDictionary["-f"];
+            }
+
+            if (argsAsDictionary.ContainsKey("-dtpa"))
+            {
+                input.NestedContentDocTypePropertyAlias = argsAsDictionary["-dtpa"];
+            }
+
+            if (argsAsDictionary.ContainsKey("-udi"))
+            {
+                var serviceName = argsAsDictionary["-udi"];
+
+                if (string.IsNullOrEmpty(serviceName) || (serviceName != "media" && serviceName != "content"))
+                {
+                    
+                }
+                else
+                {
+                    input.UdiServiceName = serviceName.ToLower();
+                }
+            }
+
+            return input;
+        }
+
+        public static Dictionary<string, string> _argsAsDictionary(string[] args)
+        {
+            var dictionary = new Dictionary<string, string>();
+
+            foreach (var arg in args)
+            {
+                var splitValues = arg.Split(new[] {":"}, StringSplitOptions.RemoveEmptyEntries);
+
+                //only valid for <key>:<value>
+                if (splitValues.Length == 2)
+                {
+                    if (!dictionary.ContainsKey(splitValues[0]))
+                    {
+                        dictionary.Add(splitValues[0], splitValues[1]);
+                    }
+                }
+            }
+
+            return dictionary;
         }
     }
 }

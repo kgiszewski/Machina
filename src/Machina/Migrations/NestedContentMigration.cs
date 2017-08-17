@@ -32,7 +32,9 @@ namespace Machina.Migrations
 
         public override async Task<DeliverableResponse> Run(string command, string[] args)
         {
-            var shouldPersist = MigrationHelper.ShouldPersist(args);
+            var cliInput = MigrationHelper.ParseCliArgs(args);
+
+            var shouldPersist = cliInput.ShouldPersist;
 
             Console.WriteLine("Migrating NestedContent properties to UDI...");
 
@@ -45,37 +47,24 @@ namespace Machina.Migrations
                 Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
             }
 
-            var doctypePropertyAlias = string.Empty;
 
-            if (args.Length > 2)
-            {
-                doctypePropertyAlias = args[2];
-            }
-
-            if (string.IsNullOrEmpty(doctypePropertyAlias))
+            if (string.IsNullOrEmpty(cliInput.NestedContentDocTypePropertyAlias))
             {
                 Console.WriteLine("You need specify a doctype property alias!");
                 
                 return DeliverableResponse.Continue;
             }
 
-            var serviceType = string.Empty;
-
-            if (args.Length > 3)
-            {
-                serviceType = args[3];
-            }
-
-            Console.WriteLine($"Using {serviceType} service for UDI's!");
-
-            if (string.IsNullOrEmpty(serviceType) || (serviceType != "media" && serviceType != "content"))
+            if (string.IsNullOrEmpty(cliInput.UdiServiceName))
             {
                 Console.WriteLine("You need specify a service type for the UDI (media or content)!");
 
                 return DeliverableResponse.Continue;
             }
 
-            var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(args);
+            Console.WriteLine($"Using {cliInput.UdiServiceName} service for UDI's!");
+
+            var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(cliInput);
 
             MigrationHelper.SetBufferSize(allContent.Count);
 
@@ -104,7 +93,7 @@ namespace Machina.Migrations
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
 
-                            var pattern = @"\""" + doctypePropertyAlias + @"\"":\s?\""?(\d+,?)*\""?";
+                            var pattern = @"\""" + cliInput.NestedContentDocTypePropertyAlias + @"\"":\s?\""?(\d+,?)*\""?";
 
                             var matches = Regex.Matches(propertyValueString, pattern);
 
@@ -144,7 +133,7 @@ namespace Machina.Migrations
                                         {
                                             Console.WriteLine($"Getting by Id: {referencedId}");
 
-                                            var udi = _getUdi(serviceType, referencedId);
+                                            var udi = _getUdi(cliInput.UdiServiceName, referencedId);
 
                                             udiList.Add(udi.ToString());
 
