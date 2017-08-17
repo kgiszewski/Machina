@@ -39,7 +39,7 @@ To fix publish all of your nodes. You can do so by right-clicking the root level
 
 **BACKUP YOUR DB IN CASE IT GOES WRONG. PRACTICE LOCALLY BEFORE ATTEMPTING ON PROD!**
 
-## Commands
+## Commands (v0.2.0+)
 
 ### Migrate Nested Content
 `machina-mnc`
