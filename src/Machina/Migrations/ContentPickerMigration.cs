@@ -8,8 +8,8 @@ using Umbraco.Core.Services;
 
 namespace Machina.Migrations
 {
-    [DeliverableName("migrate-content-picker")]
-    [DeliverableAlias("mcp")]
+    [DeliverableName("machina-migrate-content-picker")]
+    [DeliverableAlias("machina-mcp")]
     public class ContentPickerMigration : Deliverable
     {
         private readonly IContentService _contentService;
@@ -29,18 +29,7 @@ namespace Machina.Migrations
         {
             var cliInput = MigrationHelper.ParseCliArgs(args);
 
-            var shouldPersist = cliInput.ShouldPersist;
-
             Console.WriteLine("Migrating ContentPicker2 properties to UDI...");
-
-            if (shouldPersist)
-            {
-                Console.WriteLine("Persisting!");
-            }
-            else
-            {
-                Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
-            }
 
             var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(cliInput);
 
@@ -77,7 +66,7 @@ namespace Machina.Migrations
 
                             property.Value = udi;
 
-                            if (shouldPersist)
+                            if (cliInput.ShouldPersist)
                             {
                                 _contentService.Save(content);
                             }

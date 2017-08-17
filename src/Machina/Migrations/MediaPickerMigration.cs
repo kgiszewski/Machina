@@ -9,8 +9,8 @@ using Umbraco.Core.Services;
 
 namespace Machina.Migrations
 {
-    [DeliverableName("migrate-media-picker")]
-    [DeliverableAlias("mmp")]
+    [DeliverableName("machina-migrate-media-picker")]
+    [DeliverableAlias("machina-mmp")]
     public class MediaPickerMigration : Deliverable
     {
         private readonly IContentService _contentService;
@@ -33,18 +33,7 @@ namespace Machina.Migrations
         {
             var cliInput = MigrationHelper.ParseCliArgs(args);
 
-            var shouldPersist = cliInput.ShouldPersist;
-
             Console.WriteLine("Migrating Media Picker properties to UDI...");
-
-            if (shouldPersist)
-            {
-                Console.WriteLine("Persisting!");
-            }
-            else
-            {
-                Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
-            }
 
             var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(cliInput);
 
@@ -116,7 +105,7 @@ namespace Machina.Migrations
                                 Console.ResetColor();
                             }
 
-                            if (shouldPersist)
+                            if (cliInput.ShouldPersist)
                             {
                                 _contentService.Save(content);
                             }

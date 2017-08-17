@@ -10,8 +10,8 @@ using Umbraco.Core.Services;
 
 namespace Machina.Migrations
 {
-    [DeliverableName("migrate-nested-content")]
-    [DeliverableAlias("mnc")]
+    [DeliverableName("machina-migrate-nested-content")]
+    [DeliverableAlias("machina-mnc")]
     public class NestedContentMigration : Deliverable
     {
         private readonly IContentService _contentService;
@@ -34,19 +34,7 @@ namespace Machina.Migrations
         {
             var cliInput = MigrationHelper.ParseCliArgs(args);
 
-            var shouldPersist = cliInput.ShouldPersist;
-
             Console.WriteLine("Migrating NestedContent properties to UDI...");
-
-            if (shouldPersist)
-            {
-                Console.WriteLine("Persisting!");
-            }
-            else
-            {
-                Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
-            }
-
 
             if (string.IsNullOrEmpty(cliInput.NestedContentDocTypePropertyAlias))
             {
@@ -176,7 +164,7 @@ namespace Machina.Migrations
 
                                 Console.WriteLine($"Final Result: {propertyValueString}");
 
-                                if (shouldPersist)
+                                if (cliInput.ShouldPersist)
                                 {
                                     _contentService.Save(content);
                                 }

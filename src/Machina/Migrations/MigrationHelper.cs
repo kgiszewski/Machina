@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Chauffeur;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
@@ -61,17 +60,42 @@ namespace Machina.Migrations
 
             var input = new MigrationCliInput
             {
-                ShouldPersist = argsAsDictionary.ContainsKey("-p") && argsAsDictionary["-p"] == "1"
+                ShouldPersist = argsAsDictionary.ContainsKey("-p") && argsAsDictionary["-p"] == "1",
+                TreatValueAsNumber = argsAsDictionary.ContainsKey("-tvn") && argsAsDictionary["-tvn"] == "1"
             };
+
+            if (input.ShouldPersist)
+            {
+                Console.WriteLine($"**PERSISTING**");
+            }
+            else
+            {
+                Console.WriteLine($"Previewing, please pass '-p:1' to persist.");
+            }
 
             if (argsAsDictionary.ContainsKey("-f"))
             {
                 input.FilterBy = argsAsDictionary["-f"];
             }
 
-            if (argsAsDictionary.ContainsKey("-dtpa"))
+            if (argsAsDictionary.ContainsKey("-ncdtpa"))
             {
-                input.NestedContentDocTypePropertyAlias = argsAsDictionary["-dtpa"];
+                input.NestedContentDocTypePropertyAlias = argsAsDictionary["-ncdtpa"];
+            }
+
+            if (argsAsDictionary.ContainsKey("-pta"))
+            {
+                input.PropertyTypeAlias = argsAsDictionary["-pta"];
+            }
+
+            if (argsAsDictionary.ContainsKey("-pea"))
+            {
+                input.PropertyEditorAlias = argsAsDictionary["-pea"];
+            }
+
+            if (argsAsDictionary.ContainsKey("-v"))
+            {
+                input.Value = argsAsDictionary["-v"];
             }
 
             if (argsAsDictionary.ContainsKey("-udi"))
@@ -80,7 +104,7 @@ namespace Machina.Migrations
 
                 if (string.IsNullOrEmpty(serviceName) || (serviceName != "media" && serviceName != "content"))
                 {
-                    
+                    serviceName = null;
                 }
                 else
                 {

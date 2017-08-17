@@ -9,8 +9,8 @@ using Umbraco.Core.Services;
 
 namespace Machina.Migrations
 {
-    [DeliverableName("migrate-mntp-picker")]
-    [DeliverableAlias("mmntp")]
+    [DeliverableName("machina-migrate-mntp-picker")]
+    [DeliverableAlias("machina-mmntp")]
     public class MntpMigration : Deliverable
     {
         private readonly IContentService _contentService;
@@ -30,18 +30,7 @@ namespace Machina.Migrations
         {
             var cliInput = MigrationHelper.ParseCliArgs(args);
 
-            var shouldPersist = cliInput.ShouldPersist;
-
             Console.WriteLine("Migrating MNTP properties to UDI...");
-
-            if (shouldPersist)
-            {
-                Console.WriteLine("Persisting!");
-            }
-            else
-            {
-                Console.WriteLine("Previewing, re-run with '1' as the first arg to persist.");
-            }
 
             var allContent = MigrationHelper.GetAllContent(_contentService).FilterBy(cliInput);
 
@@ -118,7 +107,7 @@ namespace Machina.Migrations
                                 Console.ResetColor();
                             }
 
-                            if (shouldPersist)
+                            if (cliInput.ShouldPersist)
                             {
                                 _contentService.Save(content);
                             }

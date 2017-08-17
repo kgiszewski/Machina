@@ -280,6 +280,7 @@
     <Compile Include="Migrations\MediaPickerMigration.cs" />
     <Compile Include="Migrations\MigrationHelper.cs" />
     <Compile Include="Migrations\MntpMigration.cs" />
+    <Compile Include="Migrations\AnyPropertyMigration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
