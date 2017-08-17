@@ -69,6 +69,7 @@ Optionally `-f`, `-p`
 
 `-p:1` - Instructs Machina to save the results to the DB **BACKUP YOUR DB FIRST**
 
+`-ncdtpa:<docTypePropertyAlias>` - Which JSON field are we doing crazy REGEX on?
 
 ## FAQ
 
