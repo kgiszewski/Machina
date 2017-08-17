@@ -17,9 +17,9 @@ To use you will need to do the following:
 
 **You should read the rest of this before proceeding (including FAQ's)!**
 
-![help](assets/machina.png)
+![help](assets/machina.png?v=0.2.0)
 
-To run a command, type the command name and press `ENTER`. For instance to run the `migrate content picker` command, type `mcp` and press `ENTER`.
+To run a command, type the command name and press `ENTER`. For instance to run the `migrate content picker` command, type `machina-mcp` and press `ENTER`.
 
 This will provide you preview output against your database. At this time you see if the proposed changes seem legit.
 
@@ -27,9 +27,9 @@ You'll likely get no output because you probably haven't changed your `ContentPi
 
 Log into Umbraco, change any datatype using `Umbraco.ContentPicker` to `Umbraco.ContentPicker2` and save. Any prevalues won't move over so you'll wanna update those too.
 
-Now re-run the preview (i.e. `mcp <ENTER>`).
+Now re-run the preview (i.e. `machina-mcp <ENTER>`).
 
-If you're happy with the results and want to alter the DB, type `mcp 1 <ENTER>`.
+If you're happy with the results and want to alter the DB, type `machina-mcp -p:1<ENTER>`.
 
 At this point your site will be broken if you visit it. It's because the underlying content has been updated in the DB but the frontend is operating off the cache values.
 
@@ -38,6 +38,37 @@ These cache values are used in the `Umbraco.ContentPicker2` property value conve
 To fix publish all of your nodes. You can do so by right-clicking the root level items (one at a time) and selecting 'Publish'. This isn't the same as 'Republish Entire Site' which is available at the top.
 
 **BACKUP YOUR DB IN CASE IT GOES WRONG. PRACTICE LOCALLY BEFORE ATTEMPTING ON PROD!**
+
+## Commands
+
+### Migrate Nested Content
+`machina-mnc`
+
+Requires `-ncdtpa`, and `-udi`
+Optionally `-f`, `-p`
+
+### Migrate Content Picker
+`machina-mcp `
+
+Optionally `-f`, `-p`
+
+### Migrate Media Picker
+`machina-mmp`
+
+Optionally `-f`, `-p`
+
+### Migrate MNTP
+`machina-mmntp`
+
+Optionally `-f`, `-p`
+
+## Args
+`-udi:<media|content>` - Sets whether to use Media or Content for UDI generation.
+
+`-f:<docTypeAlias>` - Filters the content based on a doctype alias.
+
+`-p:1` - Instructs Machina to save the results to the DB **BACKUP YOUR DB FIRST**
+
 
 ## FAQ
 
