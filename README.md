@@ -47,20 +47,28 @@ To fix publish all of your nodes. You can do so by right-clicking the root level
 Requires `-ncdtpa`, and `-udi`
 Optionally `-f`, `-p`
 
+Migrates Nested Content values to use UDI.
+
 ### Migrate Content Picker
 `machina-mcp `
 
 Optionally `-f`, `-p`
+
+Migrates Content Picker.
 
 ### Migrate Media Picker
 `machina-mmp`
 
 Optionally `-f`, `-p`
 
+Migrates Media Picker.
+
 ### Migrate MNTP
 `machina-mmntp`
 
 Optionally `-f`, `-p`
+
+Migrates MNTP values to UDI. At this time only supports `content` and not `media` or `member`. If you need to do this, ya might wanna fork this repo and have a go at it.
 
 ## Args
 `-udi:<media|content>` - Sets whether to use Media or Content for UDI generation.
