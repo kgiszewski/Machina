@@ -33,7 +33,7 @@ If you're happy with the results and want to alter the DB, type `machina-mcp -p:
 
 At this point your site will be broken if you visit it. It's because the underlying content has been updated in the DB but the frontend is operating off the cache values.
 
-These cache values are used in the `Umbraco.ContentPicker2` property value converter and will throw an exception.
+The cached values are used in the `Umbraco.ContentPicker2` property value converter and will throw an exception.
 
 To fix publish all of your nodes. You can do so by right-clicking the root level items (one at a time) and selecting 'Publish'. This isn't the same as 'Republish Entire Site' which is available at the top.
 
@@ -84,11 +84,8 @@ Migrates MNTP values to UDI. At this time only supports `content` and not `media
 **Where do I get the `Machina.dll`?**
 Right now can clone this repo and build it or off [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 
-**What about xyz property type?**
-There are a few other property types not covered in the migration scripts. Those are `Folder Browser`, `Member Picker` and `Related Links`. Send me a PR.
-
-**What about Archetype and Nested Content?**
-Archetype and Nested Content are a bit tougher since they are saving data differently and now this change pulls the rug out from them. At this time I haven't written converters for those. So don't change any items bundled into Nested Content\Archetype just yet. It'll just be pain for you.
+**What about 'xyz' property type?**
+There are a few other property types not covered in the migration scripts. Those are `Archetype`, `Folder Browser`, `Member Picker` and `Related Links`. Send me a PR.
 
 **Can I just test a small set first?**
 You can pass a doctype to the migrations in this form `machina-mcp -f:homepage` to limit the content to the `homepage` doctype. Use `machina-mcp -p:1 -f:homepage` to persist the changes to just that doctype.
