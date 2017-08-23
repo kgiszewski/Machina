@@ -85,7 +85,7 @@ Migrates MNTP values to UDI. At this time only supports `content` and not `media
 Right now can clone this repo and build it or off [Nuget](https://www.nuget.org/packages/Umbraco.Machina).
 
 **What about 'xyz' property type?**
-There are a few other property types not covered in the migration scripts. Those are `Archetype`, `Folder Browser`, `Member Picker` and `Related Links`. Send me a PR.
+There are a few other property types not covered in the migration scripts. Those are `Archetype`, `Folder Browser`, `Member Picker` and `Related Links`. Send me a PR. You might wanna try the NestedContent migrator on Archetype. I haven't migrated an Archetype site yet.
 
 **Can I just test a small set first?**
 You can pass a doctype to the migrations in this form `machina-mcp -f:homepage` to limit the content to the `homepage` doctype. Use `machina-mcp -p:1 -f:homepage` to persist the changes to just that doctype.
